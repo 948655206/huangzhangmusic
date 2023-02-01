@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.MusicActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/music_bottom"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/music_nav_config"
+            app:defaultNavHost="true"
+            />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/music_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:background="@color/purple_background"
+            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/white"
+            app:menu="@menu/music_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

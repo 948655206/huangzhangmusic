@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="login_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+
+        <item name="android:background">@drawable/shape_login_bottom_normal</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="android:lines">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="login_host" parent="login_button">
+        <item name="layout_constraintWidth_percent">0.5</item>
+        <item name="layout_constraintDimensionRatio">4:1</item>
+    </style>
+
+    <style name="MyEditTextStyle">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="BannerStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="PlayerImgStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="playImgStyle">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_nav_config.xml"
+    app:startDestination="@id/music_find">
+
+
+    <fragment
+        android:id="@+id/music_find"
+        android:name="com.example.huangzhangmusic.fragment.bottom.FindFragment"
+        android:label="FindFragment" >
+        <action
+            android:id="@+id/to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:enterAnim="@anim/slide_from_right_to_left_in"
+            app:exitAnim="@anim/slide_from_right_to_left_out"
+            app:popEnterAnim="@anim/slide_from_left_to_right_in"
+            app:popExitAnim="@anim/slide_from_left_to_right_out"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/music_blog"
+        android:name="com.example.huangzhangmusic.fragment.bottom.BlockFragment"
+        android:label="BlogFragment"
+        />
+
+    <fragment
+        android:id="@+id/music_mine"
+        android:name="com.example.huangzhangmusic.fragment.bottom.MineFragment"
+        tools:layout="MineFragment"/>
+
+    <fragment
+        android:id="@+id/music_attention"
+        android:name="com.example.huangzhangmusic.fragment.bottom.AttentionFragment"
+        android:label="AttentionFragment"
+        />
+
+    <fragment
+        android:id="@+id/music_communication"
+        android:name="com.example.huangzhangmusic.fragment.bottom.CommunicationFragment"
+        android:label="CommunicationFragment"
+        />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.huangzhangmusic.fragment.WebViewFragment"
+        android:label="WebViewFragment" />
+
+
+</navigation>
