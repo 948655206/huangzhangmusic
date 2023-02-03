@@ -26,7 +26,7 @@ data class Banner(
     val program: Any,
     val scm: String,
     val song: Any,
-    val targetId: Int,
+    val targetId: Long,
     val targetType: Int,
     val titleColor: String,
     val typeTitle: String,

@@ -26,4 +26,13 @@ class FindViewModel :ViewModel(){
             bannerData.postValue(banner)
         }
     }
+
+    /**
+     * 打开单曲
+     */
+    open fun openSingUrl(targetId: Long) {
+        viewModelScope.launch {
+            mRepository.getSongUrl(targetId)
+        }
+    }
 }

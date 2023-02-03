@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/music_nav_config.xml"
+    android:id="@+id/music_nav_config"
     app:startDestination="@id/music_find">
 
 
@@ -18,6 +18,16 @@
             app:popEnterAnim="@anim/slide_from_left_to_right_in"
             app:popExitAnim="@anim/slide_from_left_to_right_out"
             />
+
+        <action
+            android:id="@+id/to_playFragment"
+            app:destination="@id/playFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_exit_anim" />
+
+
     </fragment>
 
     <fragment
@@ -42,10 +52,19 @@
         android:name="com.example.huangzhangmusic.fragment.bottom.CommunicationFragment"
         android:label="CommunicationFragment"
         />
+
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.huangzhangmusic.fragment.WebViewFragment"
-        android:label="WebViewFragment" />
+        android:label="WebViewFragment"
+        />
+
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="com.example.huangzhangmusic.fragment.PlayFragment"
+        android:label="PlayFragment"
+
+        />
 
 
 </navigation>

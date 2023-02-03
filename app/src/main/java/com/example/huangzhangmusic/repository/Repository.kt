@@ -12,5 +12,9 @@ class Repository {
 
     suspend fun getBanner() = RetrofitClient.apiService.getBanner()
 
+    /**
+     * 获取歌曲url
+     */
+    suspend fun getSongUrl(id:Long)=RetrofitClient.apiService.getSongUrl(id,"lossless")
 }
 

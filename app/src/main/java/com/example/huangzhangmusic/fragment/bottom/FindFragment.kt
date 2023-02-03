@@ -1,17 +1,20 @@
 package com.example.huangzhangmusic.fragment.bottom
 
-import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.huangzhangmusic.R
+import com.example.huangzhangmusic.activity.MusicActivity
 import com.example.huangzhangmusic.adapter.ChartAdapter
 import com.example.huangzhangmusic.base.BaseVMFragment
 import com.example.huangzhangmusic.databinding.FragmentFindBinding
-import com.example.huangzhangmusic.domain.Banner
 import com.example.huangzhangmusic.domain.Const
+import com.example.huangzhangmusic.domain.IntentState
 import com.example.huangzhangmusic.viewModel.FindViewModel
 import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.listener.OnBannerListener
 import com.youth.banner.transformer.AlphaPageTransformer
 
 
@@ -44,6 +47,9 @@ class FindFragment :BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                     when (data.targetType) {
                         Const.TYPE_SONG -> {
                             //单曲
+                            viewModel.openSingUrl(data.targetId)
+                            (requireActivity() as MusicActivity).setIntentState(IntentState.MUSIC)
+                            findNavController().navigate(R.id.to_playFragment)
                         }
                         Const.TYPE_ALUM -> {
                             //专辑
