@@ -28,7 +28,6 @@
             android:layout_height="0dp"
             android:layout_margin="20dp"
 
-            android:src="@color/white"
             app:layout_constraintHeight_percent="0.45"
             app:layout_constraintTop_toBottomOf="@id/down_btn"
             app:shapeAppearance="@style/PlayerImgStyle" />

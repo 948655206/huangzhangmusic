@@ -16,5 +16,10 @@ class Repository {
      * 获取歌曲url
      */
     suspend fun getSongUrl(id:Long)=RetrofitClient.apiService.getSongUrl(id,"lossless")
+
+    /**
+     * 获取歌曲详情
+     */
+    suspend fun getSongDetail(id:Long)=RetrofitClient.apiService.getSongDetail(id);
 }
 

@@ -1,5 +1,6 @@
 package com.example.huangzhangmusic.fragment.bottom
 
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -47,9 +48,10 @@ class FindFragment :BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                     when (data.targetType) {
                         Const.TYPE_SONG -> {
                             //单曲
-                            viewModel.openSingUrl(data.targetId)
+                            val bundle = Bundle()
+                            bundle.putLong("targetId",data.targetId)
                             (requireActivity() as MusicActivity).setIntentState(IntentState.MUSIC)
-                            findNavController().navigate(R.id.to_playFragment)
+                            findNavController().navigate(R.id.to_playFragment,bundle)
                         }
                         Const.TYPE_ALUM -> {
                             //专辑

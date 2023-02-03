@@ -2,6 +2,7 @@ package com.example.huangzhangmusic.api
 
 import com.example.huangzhangmusic.domain.BannerData
 import com.example.huangzhangmusic.domain.ResultLogin
+import com.example.huangzhangmusic.domain.SongDetail
 import com.example.huangzhangmusic.domain.SongUrlData
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -10,7 +11,7 @@ import retrofit2.http.QueryMap
 
 interface ApiService {
     companion object {
-        const val BASE_URL = "http://192.168.0.101:3000/"
+        const val BASE_URL = "http://192.168.0.102:3000/"
     }
 
 
@@ -31,4 +32,10 @@ interface ApiService {
      */
     @GET("song/url/v1")
     suspend fun getSongUrl(@Query("id") id: Long, @Query("level") level: String) : SongUrlData
+
+    /**
+     * 获取歌曲详情
+     */
+    @GET("song/detail")
+    suspend fun getSongDetail(@Query("ids")id :Long): SongDetail
 }
