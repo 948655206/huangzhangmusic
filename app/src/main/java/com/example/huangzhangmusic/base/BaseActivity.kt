@@ -15,12 +15,12 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView(this, getLayoutId())
         //创建ViewModel
         initViewModel()
-        //观察数据变化
-        initObserver()
         //初始化 控件
         initView()
         //设置相关事件
         initEvent()
+        //观察数据变化
+        initObserver()
         //开始去加载数据
         startLoadData()
     }

@@ -23,6 +23,11 @@ import com.youth.banner.transformer.AlphaPageTransformer
  * 发现页
  */
 class FindFragment :BaseVMFragment<FragmentFindBinding, FindViewModel>() {
+
+    private val musicViewModel by lazy {
+        (requireActivity() as MusicActivity).viewModel
+    }
+
     override fun getLayoutId(): Int = R.layout.fragment_find
 
     private val chartAdapter by lazy {
@@ -50,7 +55,7 @@ class FindFragment :BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                             //单曲
                             val bundle = Bundle()
                             bundle.putLong("targetId",data.targetId)
-                            (requireActivity() as MusicActivity).setIntentState(IntentState.MUSIC)
+                            musicViewModel.intentState.postValue(IntentState.MUSIC)
                             findNavController().navigate(R.id.to_playFragment,bundle)
                         }
                         Const.TYPE_ALUM -> {

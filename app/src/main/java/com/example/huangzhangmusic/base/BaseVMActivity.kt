@@ -7,7 +7,7 @@ import com.example.huangzhangmusic.base.BaseActivity
 
 abstract class BaseVMActivity<VB : ViewDataBinding,VM:ViewModel> : BaseActivity<VB>() {
 
-    protected lateinit var viewModel: VM
+    open lateinit var viewModel: VM
 
     override fun initViewModel() {
         viewModel=ViewModelProvider(this).get(getVMClass())

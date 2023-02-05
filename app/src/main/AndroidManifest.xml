@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
+    <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS"
+        tools:ignore="ProtectedPermissions" />
+
     <application
         android:name="com.example.huangzhangmusic.App"
         android:allowBackup="true"
@@ -35,11 +38,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".fragment.PlayActivity"
-            android:exported="true"
-            >
-
-        </activity>
     </application>
 
 </manifest>

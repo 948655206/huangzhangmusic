@@ -59,7 +59,7 @@ data class SongDetail(
         val cp: Int,
         val crbt: Any,
         val djId: Int,
-        val dt: Int,
+        val dt: Long,
         val entertainmentTags: Any,
         val fee: Int,
         val ftype: Int,

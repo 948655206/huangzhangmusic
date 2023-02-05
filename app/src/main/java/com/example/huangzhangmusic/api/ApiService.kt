@@ -4,14 +4,17 @@ import com.example.huangzhangmusic.domain.BannerData
 import com.example.huangzhangmusic.domain.ResultLogin
 import com.example.huangzhangmusic.domain.SongDetail
 import com.example.huangzhangmusic.domain.SongUrlData
+import com.example.huangzhangmusic.utils.LocalIPUtils
+import com.example.huangzhangmusic.utils.LocalIPUtils.getLocalIPAddress
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface ApiService {
+
     companion object {
-        const val BASE_URL = "http://192.168.0.102:3000/"
+        val BASE_URL = "http:/192.168.0.103:3000"
     }
 
 
@@ -31,11 +34,11 @@ interface ApiService {
      * 获取歌曲url
      */
     @GET("song/url/v1")
-    suspend fun getSongUrl(@Query("id") id: Long, @Query("level") level: String) : SongUrlData
+    suspend fun getSongUrl(@Query("id") id: Long, @Query("level") level: String): SongUrlData
 
     /**
      * 获取歌曲详情
      */
     @GET("song/detail")
-    suspend fun getSongDetail(@Query("ids")id :Long): SongDetail
+    suspend fun getSongDetail(@Query("ids") id: Long): SongDetail
 }
