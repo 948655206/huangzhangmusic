@@ -3,7 +3,6 @@ package com.example.huangzhangmusic.base
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -21,14 +20,18 @@ abstract class BaseVMFragment<VB : ViewDataBinding, VM : ViewModel> : BaseFragme
         setView()
         setEvent()
         //观察数据变化
-        initObserver()
+        setObserver()
+    }
+
+    open fun setObserver() {
+
     }
 
     open fun setView() {
 
     }
 
-    open fun setEvent(){
+    open fun setEvent() {
 
     }
 
@@ -40,6 +43,6 @@ abstract class BaseVMFragment<VB : ViewDataBinding, VM : ViewModel> : BaseFragme
         viewModel = ViewModelProvider(this).get(getVMClass())
     }
 
-    abstract fun getVMClass():Class<VM>
+    abstract fun getVMClass(): Class<VM>
 
 }

@@ -1,30 +1,19 @@
 package com.example.huangzhangmusic.fragment
 
 
-import android.content.res.Configuration
-import android.view.Window
-import android.view.WindowManager
 import android.widget.SeekBar
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.huangzhangmusic.R
 import com.example.huangzhangmusic.activity.MusicActivity
-import com.example.huangzhangmusic.base.BaseActivity
 import com.example.huangzhangmusic.base.BaseFragment
-import com.example.huangzhangmusic.base.BaseVMFragment
 import com.example.huangzhangmusic.databinding.FragmentPlayBinding
 import com.example.huangzhangmusic.domain.IntentState
-import com.example.huangzhangmusic.domain.SongDetail
 import com.example.huangzhangmusic.utils.GlideUtils
 import com.example.huangzhangmusic.utils.TimeUtils
-import com.example.huangzhangmusic.viewModel.PlayViewModel
 import com.lzx.starrysky.manager.PlaybackStage
-import okhttp3.internal.wait
-import java.util.*
 
-class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
+class PlayFragment : BaseFragment<FragmentPlayBinding>() {
 
     private val musicViewModel by lazy {
         (requireActivity() as MusicActivity).viewModel
@@ -34,14 +23,14 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
         return R.layout.fragment_play
     }
 
-    override fun setView() {
+    override fun initView() {
+        super.initView()
         println("初始化...")
         //单曲Id
         val targetId = arguments?.getLong("targetId")
         if (targetId != null) {
-            viewModel.apply {
-                openSingUrl(targetId)
-                getSongDetail(targetId)
+            musicViewModel.apply {
+                playMusic(targetId)
             }
         } else {
             println("targetId为空..")
@@ -50,7 +39,7 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
     }
 
 
-    override fun setEvent() {
+    override fun initEvent() {
         //点击监听
         mBinding.apply {
             downBtn.setOnClickListener {
@@ -68,7 +57,7 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
             up.setOnClickListener {
                 musicViewModel.upMusic()
             }
-            seekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
                     progress: Int,
@@ -82,7 +71,7 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
                     if (seekBar != null) {
-                        musicViewModel.player.seekTo(seekBar.progress.toLong(),false)
+                        musicViewModel.player.seekTo(seekBar.progress.toLong(), false)
                         musicViewModel.pause()
                     }
                 }
@@ -92,20 +81,18 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
     }
 
     override fun initObserver() {
-        viewModel.songData.observe(this, Observer {
-            for (songData in it.data) {
-                musicViewModel.playMusic(songData.url)
-            }
-        })
-        viewModel.songDetail.observe(this, Observer {
+        //歌曲详情
+        musicViewModel.songDetail.observe(this, Observer {
+            println("歌曲详情变化了..")
             mBinding.apply {
-                for (song in it.songs) {
-                    GlideUtils.getInstance().setImageSrc(song.al.picUrl, playImg)
-                    songName.text = song.al.name
-                    singer.text = song.ar.get(0).name
-                    endTime.text=TimeUtils.timeFormatMMSS(song.dt)
+                it.apply {
+                    GlideUtils.getInstance().setImageSrc(it.songCover, playImg)
+                    mBinding.songName.text = songName
+                    singer.text = artist
+                    endTime.text = TimeUtils.timeFormatMMSS(duration)
+
                     //设置进度条最大值
-                    seekbar.max=song.dt.toInt()
+                    seekbar.max = duration.toInt()
                 }
             }
         })
@@ -114,6 +101,12 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
                 when (it.stage) {
                     PlaybackStage.PLAYING -> {
                         mBinding.pause.setImageResource(R.drawable.svg_pause)
+                        println("歌曲列表大小==>${player.getPlayList().size}")
+                        for (i in 0 until player.getPlayList().size){
+                            player.getPlayList().get(i).apply {
+                                println("歌曲$i==>$songName")
+                            }
+                        }
                     }
                     PlaybackStage.PAUSE -> {
                         mBinding.pause.setImageResource(R.drawable.svg_play)
@@ -122,8 +115,8 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
             })
 
             currentTime.observe(this@PlayFragment, Observer {
-                mBinding.statTime.text=TimeUtils.timeFormatMMSS(currentTime.value!!)
-                mBinding.seekbar.progress= currentTime.value!!.toInt()
+                mBinding.statTime.text = TimeUtils.timeFormatMMSS(currentTime.value!!)
+                mBinding.seekbar.progress = currentTime.value!!.toInt()
             })
         }
     }
@@ -134,7 +127,4 @@ class PlayFragment : BaseVMFragment<FragmentPlayBinding, PlayViewModel>() {
         println("onDestroy123")
     }
 
-    override fun getVMClass(): Class<PlayViewModel> {
-        return PlayViewModel::class.java
-    }
 }

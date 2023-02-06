@@ -14,7 +14,7 @@ import retrofit2.http.QueryMap
 interface ApiService {
 
     companion object {
-        val BASE_URL = "http:/192.168.0.103:3000"
+        val BASE_URL = "http://192.168.0.103:3000/"
     }
 
 
@@ -34,11 +34,11 @@ interface ApiService {
      * 获取歌曲url
      */
     @GET("song/url/v1")
-    suspend fun getSongUrl(@Query("id") id: Long, @Query("level") level: String): SongUrlData
+    suspend fun getSongUrl(@Query("id") id: Long?, @Query("level") level: String): SongUrlData
 
     /**
      * 获取歌曲详情
      */
     @GET("song/detail")
-    suspend fun getSongDetail(@Query("ids") id: Long): SongDetail
+    suspend fun getSongDetail(@Query("ids") id: Long?): SongDetail
 }

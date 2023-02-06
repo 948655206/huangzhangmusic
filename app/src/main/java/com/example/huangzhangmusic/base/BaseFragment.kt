@@ -28,6 +28,8 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
         initView()
         //添加事件
         initEvent()
+        //监听activity中 Observer
+        initObserver()
     }
 
     open fun initObserver() {

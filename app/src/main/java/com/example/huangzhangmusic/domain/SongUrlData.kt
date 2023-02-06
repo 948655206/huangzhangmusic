@@ -22,7 +22,7 @@ data class Data(
     val level: String,
     val md5: String,
     val payed: Int,
-    val peak: Int,
+    val peak: Float,
     val podcastCtrp: Any,
     val rightSource: Int,
     val size: Int,

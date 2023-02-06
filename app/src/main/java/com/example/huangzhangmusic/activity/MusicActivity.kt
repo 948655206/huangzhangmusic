@@ -51,7 +51,7 @@ class MusicActivity : BaseVMActivity<ActivityMusicBinding, MusicViewModel>() {
                 }
             })
             progress.observe(this@MusicActivity, Observer {
-                println("progress==>$it")
+//                println("progress==>$it")
             })
         }
 
@@ -59,7 +59,6 @@ class MusicActivity : BaseVMActivity<ActivityMusicBinding, MusicViewModel>() {
 
     override fun initEvent() {
         viewModel.initPlayer(application)
-
     }
 
     override fun onDestroy() {

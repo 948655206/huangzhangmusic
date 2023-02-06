@@ -44,7 +44,7 @@ class FindFragment :BaseVMFragment<FragmentFindBinding, FindViewModel>() {
         }
     }
 
-    override fun initObserver() {
+    override fun setObserver() {
         viewModel.apply {
             bannerData.observe(this@FindFragment, Observer {
                 val list = it.banners
