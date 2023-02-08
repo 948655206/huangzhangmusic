@@ -1,6 +1,8 @@
 package com.example.huangzhangmusic.fragment
 
 
+import android.os.Bundle
+import android.transition.TransitionInflater
 import android.widget.SeekBar
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,15 @@ import com.lzx.starrysky.manager.PlaybackStage
 
 class PlayFragment : BaseFragment<FragmentPlayBinding>() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition=
+            TransitionInflater.from(requireContext()).inflateTransition(R.transition.transition_music_imag)
+        sharedElementReturnTransition=
+            TransitionInflater.from(requireContext()).inflateTransition(R.transition.transition_music_imag)
+
+    }
+
     private val musicViewModel by lazy {
         (requireActivity() as MusicActivity).viewModel
     }
@@ -24,18 +35,24 @@ class PlayFragment : BaseFragment<FragmentPlayBinding>() {
     }
 
     override fun initView() {
-        super.initView()
         println("初始化...")
         //单曲Id
         val targetId = arguments?.getLong("targetId")
         if (targetId != null) {
             musicViewModel.apply {
+                println("targetId==>$targetId")
                 playMusic(targetId)
             }
         } else {
             println("targetId为空..")
         }
-
+        //图片url
+        val imageUrl=arguments?.getString("imageUrl")
+        if (imageUrl != null) {
+            GlideUtils.getInstance().setImageSrc(imageUrl,mBinding.playImg)
+        }else{
+            println("imageUrl为空..")
+        }
     }
 
 
@@ -86,7 +103,7 @@ class PlayFragment : BaseFragment<FragmentPlayBinding>() {
             println("歌曲详情变化了..")
             mBinding.apply {
                 it.apply {
-                    GlideUtils.getInstance().setImageSrc(it.songCover, playImg)
+                    GlideUtils.getInstance().setImageSrcByRectangle(it.songCover, playImg)
                     mBinding.songName.text = songName
                     singer.text = artist
                     endTime.text = TimeUtils.timeFormatMMSS(duration)

@@ -33,8 +33,22 @@ public class GlideUtils {
         return mInstance;
     }
 
-    public void setImageSrc(String url, ShapeableImageView view){
+    /**
+     * 设置图片 方形钝角
+     * @param url
+     * @param view
+     */
+    public void setImageSrcByRectangle(String url, ShapeableImageView view){
         Glide.with(mContext).load(url).apply(options).into(new ImageViewTarget<Drawable>(view) {
+            @Override
+            protected void setResource(@Nullable Drawable resource) {
+                view.setImageDrawable(resource);
+            }
+        });
+    }
+
+    public void setImageSrc(String url, ShapeableImageView view){
+        Glide.with(mContext).load(url).into(new ImageViewTarget<Drawable>(view) {
             @Override
             protected void setResource(@Nullable Drawable resource) {
                 view.setImageDrawable(resource);
