@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.widget.SeekBar
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.huangzhangmusic.R
 import com.example.huangzhangmusic.activity.MusicActivity
@@ -16,15 +17,6 @@ import com.example.huangzhangmusic.utils.TimeUtils
 import com.lzx.starrysky.manager.PlaybackStage
 
 class PlayFragment : BaseFragment<FragmentPlayBinding>() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition=
-            TransitionInflater.from(requireContext()).inflateTransition(R.transition.transition_music_imag)
-        sharedElementReturnTransition=
-            TransitionInflater.from(requireContext()).inflateTransition(R.transition.transition_music_imag)
-
-    }
 
     private val musicViewModel by lazy {
         (requireActivity() as MusicActivity).viewModel
@@ -106,6 +98,7 @@ class PlayFragment : BaseFragment<FragmentPlayBinding>() {
                     GlideUtils.getInstance().setImageSrcByRectangle(it.songCover, playImg)
                     mBinding.songName.text = songName
                     singer.text = artist
+                    println("duration==>$duration")
                     endTime.text = TimeUtils.timeFormatMMSS(duration)
 
                     //设置进度条最大值

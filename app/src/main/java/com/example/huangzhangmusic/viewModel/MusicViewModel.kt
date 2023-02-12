@@ -12,6 +12,9 @@ import com.lzx.starrysky.StarrySky
 import com.lzx.starrysky.StarrySkyInstall
 import com.lzx.starrysky.manager.PlaybackStage
 import com.lzx.starrysky.notification.INotification
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.HttpUrl
 import java.net.HttpURLConnection
@@ -53,6 +56,10 @@ class MusicViewModel : ViewModel() {
                 getSongUrl(targetId).apply {
                     if (code == HttpURLConnection.HTTP_OK) {
                         songInfo.songUrl = data.get(0).url
+                        if (data.get(0).fee==1) {
+                            val time = data.get(0).freeTrialInfo.end - data.get(0).freeTrialInfo.start
+                            songInfo.duration= time.toLong()*1000
+                        }
                     } else {
                         //可以发送歌曲URL
                     }
@@ -66,14 +73,17 @@ class MusicViewModel : ViewModel() {
                                 artist = ar.get(0).name
                                 songCover = al.picUrl
                                 //歌曲长度
-                                duration = dt
-
+                                if (fee!=1) {
+                                    duration = dt
+                                }
                             }
                         }
                     }
                 }
                 //发送歌曲详情
                 songDetail.postValue(songInfo)
+                //设置为播放状态
+                musicState.postValue(PlaybackStage.PLAYING)
                 //添加到播放器并且播放
                 player.apply {
                     addSongInfo(songInfo)

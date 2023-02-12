@@ -24,9 +24,6 @@ class ChartAdapter(datas: MutableList<Banner>?) : BannerAdapter<Banner, ChartAda
     datas
 ) {
 
-
-
-
     private val context by lazy {
         App.context
     }

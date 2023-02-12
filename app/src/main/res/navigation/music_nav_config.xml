@@ -9,23 +9,20 @@
     <fragment
         android:id="@+id/music_find"
         android:name="com.example.huangzhangmusic.fragment.bottom.FindFragment"
-        android:label="FindFragment" >
+        android:label="FindFragment">
         <action
             android:id="@+id/to_webViewFragment"
             app:destination="@id/webViewFragment"
             app:enterAnim="@anim/slide_from_right_to_left_in"
             app:exitAnim="@anim/slide_from_right_to_left_out"
             app:popEnterAnim="@anim/slide_from_left_to_right_in"
-            app:popExitAnim="@anim/slide_from_left_to_right_out"
-            />
+            app:popExitAnim="@anim/slide_from_left_to_right_out" />
 
         <action
             android:id="@+id/to_playFragment"
             app:destination="@id/playFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@animator/nav_default_exit_anim" />
+
+            />
 
 
     </fragment>
@@ -33,31 +30,27 @@
     <fragment
         android:id="@+id/music_blog"
         android:name="com.example.huangzhangmusic.fragment.bottom.BlockFragment"
-        android:label="BlogFragment"
-        />
+        android:label="BlogFragment" />
 
     <fragment
         android:id="@+id/music_mine"
         android:name="com.example.huangzhangmusic.fragment.bottom.MineFragment"
-        tools:layout="MineFragment"/>
+        tools:layout="MineFragment" />
 
     <fragment
         android:id="@+id/music_attention"
         android:name="com.example.huangzhangmusic.fragment.bottom.AttentionFragment"
-        android:label="AttentionFragment"
-        />
+        android:label="AttentionFragment" />
 
     <fragment
         android:id="@+id/music_communication"
         android:name="com.example.huangzhangmusic.fragment.bottom.CommunicationFragment"
-        android:label="CommunicationFragment"
-        />
+        android:label="CommunicationFragment" />
 
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.huangzhangmusic.fragment.WebViewFragment"
-        android:label="WebViewFragment"
-        />
+        android:label="WebViewFragment" />
 
     <fragment
         android:id="@+id/playFragment"
@@ -67,8 +60,14 @@
         />
 
 
-    <action android:id="@+id/activity_to_playFragment"
+    <action
+        android:id="@+id/activity_to_playFragment"
         app:destination="@id/playFragment"
+        app:enterAnim="@anim/slide_from_bottom_to_top_in"
+        app:exitAnim="@anim/slide_from_bottom_to_top_out"
+        app:popEnterAnim="@anim/slide_from_top_to_bottom_in"
+        app:popExitAnim="@anim/slide_from_top_to_bottom_out"
+
         />
 
 </navigation>

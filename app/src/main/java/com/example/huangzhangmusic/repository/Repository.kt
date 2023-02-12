@@ -1,24 +1,30 @@
 package com.example.huangzhangmusic.repository
 
 import com.example.huangzhangmusic.api.RetrofitClient
+import com.example.huangzhangmusic.api.RetrofitClient.apiService
 
 class Repository {
 
-    private val mapString= mutableMapOf<String, String>()
+    private val mapString = mutableMapOf<String, String>()
 
-    suspend fun getLoginByEmail(phone: String,password: String)=
-        RetrofitClient.apiService.getLoginByEmail(phone,password)
+    suspend fun getLoginByEmail(phone: String, password: String) =
+        apiService.getLoginByEmail(phone, password)
 
-    suspend fun getBanner() = RetrofitClient.apiService.getBanner()
+    suspend fun getBanner() = apiService.getBanner()
 
     /**
      * 获取歌曲url
      */
-    suspend fun getSongUrl(id: Long?)=RetrofitClient.apiService.getSongUrl(id,"lossless")
+    suspend fun getSongUrl(id: Long?) = apiService.getSongUrl(id, "lossless")
 
     /**
      * 获取歌曲详情
      */
-    suspend fun getSongDetail(id: Long?)=RetrofitClient.apiService.getSongDetail(id);
+    suspend fun getSongDetail(id: Long?) = apiService.getSongDetail(id)
+
+    /**
+     * 获取推荐歌单
+     */
+    suspend fun getRecommendSongList() = apiService.getRecommendSongList()
 }
 

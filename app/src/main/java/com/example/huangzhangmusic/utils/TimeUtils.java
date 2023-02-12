@@ -11,9 +11,11 @@ public class TimeUtils {
      * @return
      */
     public static String timeFormatMMSS(long time){
+
         SimpleDateFormat df=new SimpleDateFormat("mm:ss");
         Date date=new Date(time);
         String format = df.format(date);
+        System.out.println("转换的时间==>"+format);
         return format;
     }
 }

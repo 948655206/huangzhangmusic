@@ -4,12 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.huangzhangmusic.domain.BannerData
+import com.example.huangzhangmusic.domain.RecommendSong
 import com.example.huangzhangmusic.repository.Repository
 import kotlinx.coroutines.launch
 
 class FindViewModel :ViewModel(){
 
     val bannerData= MutableLiveData<BannerData>()
+
+    val recommendSongData=MutableLiveData<RecommendSong>()
 
     private val mRepository by lazy {
         Repository()
@@ -21,10 +24,18 @@ class FindViewModel :ViewModel(){
     open fun enterFindPage(){
         println("到这里了。。")
         viewModelScope.launch {
-            val banner = mRepository.getBanner()
-            println("轮播图 ==>$banner")
-            bannerData.postValue(banner)
+            mRepository.apply {
+                val banner = getBanner()
+//            println("轮播图 ==>$banner")
+                bannerData.postValue(banner)
+
+                val recommendSongList = getRecommendSongList()
+                println("推荐歌单==>$recommendSongList")
+                recommendSongData.postValue(recommendSongList)
+            }
         }
+
+
     }
 
 

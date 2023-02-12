@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recommend_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@drawable/svg_loading"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:shapeAppearance="@style/rectangleSmall"
+            app:layout_constraintTop_toTopOf="parent"
+
+            tools:background="@color/white" />
+
+        <TextView
+            android:id="@+id/recommend_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:maxLines="2"
+            android:paddingTop="2dp"
+            android:text="『1963-至今』日本经典动漫音乐大盘点『1963-至今』日本经典动漫音乐大盘点"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:ellipsize="end"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/recommend_img"
+            app:layout_constraintTop_toBottomOf="@id/recommend_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

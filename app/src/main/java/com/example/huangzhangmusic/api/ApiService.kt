@@ -1,9 +1,6 @@
 package com.example.huangzhangmusic.api
 
-import com.example.huangzhangmusic.domain.BannerData
-import com.example.huangzhangmusic.domain.ResultLogin
-import com.example.huangzhangmusic.domain.SongDetail
-import com.example.huangzhangmusic.domain.SongUrlData
+import com.example.huangzhangmusic.domain.*
 import com.example.huangzhangmusic.utils.LocalIPUtils
 import com.example.huangzhangmusic.utils.LocalIPUtils.getLocalIPAddress
 import retrofit2.http.GET
@@ -41,4 +38,10 @@ interface ApiService {
      */
     @GET("song/detail")
     suspend fun getSongDetail(@Query("ids") id: Long?): SongDetail
+
+    /**
+     * 推荐歌单
+     */
+    @GET("personalized")
+    suspend fun getRecommendSongList(): RecommendSong
 }

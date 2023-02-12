@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     dataBinding {
         enabled = true
@@ -99,4 +99,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.EspoirX:StarrySky:v2.6.7'
 
+    //adapter适配器
+    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta02"
 }
