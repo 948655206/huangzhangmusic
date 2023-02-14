@@ -44,4 +44,10 @@ interface ApiService {
      */
     @GET("personalized")
     suspend fun getRecommendSongList(): RecommendSong
+
+    /**
+     * 获取最新专辑
+     */
+    @GET("album/newest")
+    suspend fun getNewestAlbum(): NewAlbum
 }

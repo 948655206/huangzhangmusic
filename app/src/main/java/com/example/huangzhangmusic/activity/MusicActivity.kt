@@ -30,6 +30,12 @@ class MusicActivity : BaseVMActivity<ActivityMusicBinding, MusicViewModel>() {
     override fun initView() {
         viewModel.intentState.postValue(IntentState.BOTTOM)
 
+        //设置底部切换
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        mBinding.musicBottom.setupWithNavController(
+            navHostFragment.navController
+        )
     }
 
     override fun initObserver() {

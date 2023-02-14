@@ -7,75 +7,179 @@
 
     </data>
 
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlReboundDuration="250">
-
-        <com.scwang.smart.refresh.footer.BallPulseFooter
+        android:orientation="vertical">
+        <!--搜索栏-->
+        <com.hjq.shape.layout.ShapeConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp"
+            app:shape="rectangle"
+            app:shape_useLevel="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.youth.banner.Banner
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintHeight_percent="0.15"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@color/white" />
-
-            <LinearLayout
-                android:id="@+id/recommend"
-                android:layout_width="match_parent"
+            <com.hjq.shape.view.ShapeImageView
+                android:id="@+id/table"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@id/viewpager">
+                android:src="@drawable/svg_table"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    android:text="推荐歌单"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager" />
+            <com.hjq.shape.layout.ShapeConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/table"
+
+                app:layout_constraintLeft_toRightOf="@id/table"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/table"
+                app:shape_height="0dp"
+                app:shape_strokeColor="@color/search_middle_color"
+                app:shape_strokeWidth="2dp"
+                app:shape_radius="20dp"
+
+                app:shape_width="0dp"
+                >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
-                    android:paddingVertical="2dp"
-                    android:src="@drawable/svg_right" />
-            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:id="@+id/recommend_rv"
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/svg_search"
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
-                app:layout_constraintLeft_toLeftOf="@id/recommend"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recommend"
-
-                tools:itemCount="3"
-                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/adapter_recommend_song_list"
-                tools:orientation="horizontal" />
+                <com.hjq.shape.view.ShapeEditText
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/imageView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+            </com.hjq.shape.layout.ShapeConstraintLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.hjq.shape.layout.ShapeConstraintLayout>
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:srlEnableOverScrollDrag="true"
+            app:srlEnableLoadMore="false"
+
+            app:srlReboundDuration="250">
+
+            <com.scwang.smart.refresh.footer.BallPulseFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                <com.youth.banner.Banner
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintHeight_percent="0.15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/white" />
+
+
+                <LinearLayout
+                    android:id="@+id/recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/viewpager">
+
+                    <TextView
+
+                        style="@style/textStyle"
+                        android:text="推荐歌单"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewpager" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2dp"
+                        android:paddingVertical="2dp"
+                        android:src="@drawable/svg_right" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommend_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintLeft_toLeftOf="@id/recommend"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recommend"
+
+                    tools:itemCount="3"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/adapter_recommend_song_list"
+                    tools:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/album_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/recommend_rv">
+
+                    <TextView
+                        style="@style/textStyle"
+                        android:text="最新专辑"
+
+                        />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2dp"
+                        android:paddingVertical="2dp"
+                        android:src="@drawable/svg_right" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/album_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintLeft_toLeftOf="@id/recommend"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/album_tv"
+
+                    tools:itemCount="3"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/adapter_recommend_song_list"
+                    tools:orientation="horizontal" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+    </LinearLayout>
 
 
 </layout>

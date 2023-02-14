@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.huangzhangmusic.domain.BannerData
+import com.example.huangzhangmusic.domain.NewAlbum
 import com.example.huangzhangmusic.domain.RecommendSong
 import com.example.huangzhangmusic.repository.Repository
 import kotlinx.coroutines.launch
@@ -11,8 +12,8 @@ import kotlinx.coroutines.launch
 class FindViewModel :ViewModel(){
 
     val bannerData= MutableLiveData<BannerData>()
-
     val recommendSongData=MutableLiveData<RecommendSong>()
+    val newestAlbumData=MutableLiveData<NewAlbum>()
 
     private val mRepository by lazy {
         Repository()
@@ -32,6 +33,10 @@ class FindViewModel :ViewModel(){
                 val recommendSongList = getRecommendSongList()
                 println("推荐歌单==>$recommendSongList")
                 recommendSongData.postValue(recommendSongList)
+
+                val newestAlbum = getNewestAlbum()
+                println("最新歌单==>$newestAlbum")
+                newestAlbumData.postValue(newestAlbum)
             }
         }
 

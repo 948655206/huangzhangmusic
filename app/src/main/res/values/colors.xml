@@ -15,7 +15,14 @@
     <color name="blue_background">#1987f5</color>
     <color name="purple_down">#5d0c55</color>
 
+
     <!--进度条颜色-->
     <color name="seek_color_start">#5d0c55</color>
     <color name="seek_color_end">#AF19A0</color>
+
+    <!--搜索栏颜色-->
+    <color name="search_start_color">#372561</color>
+    <color name="search_middle_color">#6b569b</color>
+    <color name="search_end_color">#24163e</color>
+    <color name="search_gray_color">#e2e2e2</color>
 </resources>

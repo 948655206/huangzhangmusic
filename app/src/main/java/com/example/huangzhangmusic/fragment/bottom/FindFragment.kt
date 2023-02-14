@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.huangzhangmusic.R
 import com.example.huangzhangmusic.activity.MusicActivity
+import com.example.huangzhangmusic.adapter.AlbumAdapter
 import com.example.huangzhangmusic.adapter.ChartAdapter
 import com.example.huangzhangmusic.adapter.RecommendAdapter
 import com.example.huangzhangmusic.base.BaseVMFragment
@@ -43,6 +44,11 @@ class FindFragment : BaseVMFragment<FragmentFindBinding, FindViewModel>() {
         RecommendAdapter()
     }
 
+    //最新专辑适配器
+    private val newAlbumAdapter by lazy {
+        AlbumAdapter()
+    }
+
     override fun setView() {
         mBinding.viewpager.apply {
             setAdapter(chartAdapter)
@@ -57,7 +63,10 @@ class FindFragment : BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                 layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 adapter=recommendAdapter
             }
-
+            albumRv.apply {
+                layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                adapter=newAlbumAdapter
+            }
         }
 
 
@@ -71,6 +80,7 @@ class FindFragment : BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                 }
 
                 override fun onLoadMore(refreshLayout: RefreshLayout) {
+                    println("加载更多...")
                 }
             })
     }
@@ -95,11 +105,15 @@ class FindFragment : BaseVMFragment<FragmentFindBinding, FindViewModel>() {
                     }
 
                 }
+
             })
             recommendSongData.observe(this@FindFragment, Observer {
                 println("观察者收到信息")
                 mBinding.refreshLayout.finishRefresh()
                 recommendAdapter.submitList(it.result)
+            })
+            newestAlbumData.observe(this@FindFragment, Observer {
+                newAlbumAdapter.submitList(it.albums)
             })
         }
     }

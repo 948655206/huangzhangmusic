@@ -26,5 +26,10 @@ class Repository {
      * 获取推荐歌单
      */
     suspend fun getRecommendSongList() = apiService.getRecommendSongList()
+
+    /**
+     * 获取最新专辑
+     */
+    suspend fun getNewestAlbum()= apiService.getNewestAlbum()
 }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:id="@+id/music_find"
         android:icon="@drawable/svg_find"
         android:title="发现"
@@ -7,8 +8,6 @@
     <item android:id="@+id/music_blog"
         android:icon="@drawable/svg_blog"
         android:title="博客"
-        android:checkable="true"
-        android:checked="true"
         />
     <item android:id="@+id/music_mine"
         android:icon="@drawable/svg_mine"
@@ -17,6 +16,7 @@
     <item android:id="@+id/music_attention"
         android:icon="@drawable/svg_find"
         android:title="关注"
+        android:checked="true"
         />
     <item android:id="@+id/music_communication"
         android:icon="@drawable/svg_communicate"
